@@ -4,20 +4,22 @@ metadata:
   name: {{ include "user-service.fullname" . }}
   labels:
     {{- include "user-service.labels" . | nindent 4 }} 
+spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
       {{- include "user-service.selectorLabels" . | nindent 6 }}
-    metadata:
-      annotations:
-        {{- toYaml .Values.podAnnotations | nindent 8 }}
-      labels:
-        {{- include "user-service.labels" . | nindent 8 }} 
-        {{- with .Values.podLabels }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
+    templates:
+      metadata:
+        annotations:
+          {{- toYaml .Values.podAnnotations | nindent 8 }}
+        labels:
+          {{- include "user-service.labels" . | nindent 8 }} 
+          {{- with .Values.podLabels }}
+          {{- toYaml . | nindent 8 }}
+          {{- end }}    
     spec:
       containers:
         - name: {{ .Chart.Name }}

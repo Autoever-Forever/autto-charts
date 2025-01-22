@@ -2,7 +2,7 @@ replicaCount: 3
 
 image:
   repository: nginx
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   tag: latest
 
 # 추후 프로메테우스 연결 시 작성
@@ -26,7 +26,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: 192.168.19.136
+    - host: user-service.local # 192.168.19.136
       paths:
         - path: /user-service
           pathType: Prefix
