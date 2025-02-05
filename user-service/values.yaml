@@ -1,64 +1,53 @@
-replicaCount: 3
-
-image:
-  repository: nginx
-  pullPolicy: Always
-  tag: latest
-
-# 추후 프로메테우스 연결 시 작성
-#podAnnotations:
-#  prometheus.io/scrape: "true"
-#  prometheus.io/path: "/metrics"
-#  prometheus.io/port: "8080"
-
-#podLabels:
-#  environment: production
-#  monitoring: enabled
-
-service:
-  type: ClusterIP
-  port: 8080
+replicaCount: 1
+namespace: helm-backend
 
 ingress:
   enabled: true
-  className: nginx
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  className: nginx  # nginx-ingress-controller 사용
+  annotations: {}
   hosts:
-    - host: user-service.local # 192.168.19.136
+    - host: auttoever.com  # 실제 도메인으로 변경
       paths:
-        - path: /user-service
+        - path: /auth
           pathType: Prefix
-  # 인증서 설정
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
-resources:
-  limits:
-    cpu: "1"
-    memory: "1Gi"
-  requests:
-    cpu: "500m"
-    memory: "512Mi"
+image:
+  repository: auttto/autto-user-service-amd64
+  tag: "1.2"
+  pullPolicy: Always
+  
 
-livenessProbe:
-  httpGet:
-    path: /healthz
-    port: http
-readinessProbe:
-  httpGet:
-    path: /readiness
-    port: http
+service:
+  type: ClusterIP
+  port: 8081
+  targetPort: 8081
 
+mysql:
+  host: "43.203.219.134"
+  port: "3306"
+  database: "UserDB"
+  user: "root"
+  password: "1234"
+
+mail:
+  host: "smtp.naver.com"
+  port: "465"
+  username: "et0709@naver.com"
+  password: "w6978979"
+
+redis:
+  host: "43.203.219.134"
+  port: "6379"
+
+jwt:
+  secret: "64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff"
+
+server:
+  port: "8081"
+  
 autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 5
+  enabled: true  # HPA 활성화 여부
+  minReplicas: 1  # 최소 Pod 수
+  maxReplicas: 5  # 최대 Pod 수
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-nodeSelector: {}
-
