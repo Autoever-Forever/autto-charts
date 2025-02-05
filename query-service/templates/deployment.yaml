@@ -1,78 +1,68 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "query-service.fullname" . }}
-  labels:
-    {{- include "query-service.labels" . | nindent 4 }}
+  name: query-deployment
+  namespace: {{ .Values.namespace }}
+
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
-      {{- include "query-service.selectorLabels" . | nindent 6 }}
+      app: msa-query
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
-        {{- include "query-service.labels" . | nindent 8 }}
-        {{- with .Values.podLabels }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
+        app: msa-query
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "query-service.serviceAccountName" . }}
-      {{- with .Values.podSecurityContext }}
-      securityContext:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
-          {{- with .Values.securityContext }}
-          securityContext:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        - name: msa-query
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
-          {{- with .Values.livenessProbe }}
-          livenessProbe:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- with .Values.readinessProbe }}
-          readinessProbe:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- with .Values.resources }}
-          resources:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- with .Values.volumeMounts }}
-          volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-      {{- with .Values.volumes }}
-      volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+            - containerPort: {{ .Values.service.port }}
+          env:
+            - name: MYSQL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: query-config
+                  key: MYSQL_HOST
+            - name: MYSQL_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: query-config
+                  key: MYSQL_PORT
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: query-config
+                  key: MYSQL_DATABASE
+            - name: MYSQL_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: query-config
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: query-config
+                  key: MYSQL_PASSWORD
+            - name: ALLOWED_ORIGINS
+              valueFrom:
+                configMapKeyRef:
+                  name: query-config
+                  key: ALLOWED_ORIGINS
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: query-config
+                  key: JWT_SECRET
+            - name: RESERVATION_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: query-config
+                  key: RESERVATION_URL
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: query-config
+                  key: SERVER_PORT
