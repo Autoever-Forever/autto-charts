@@ -13,7 +13,7 @@ ingress:
   tls: []
 
 image:
-  repository: auttto/autto-reservation-service-amd64
+  repository: auttto/reservation-service
   tag: "1.0.0"
   pullPolicy: IfNotPresent
 
@@ -23,7 +23,7 @@ service:
   targetPort: 8083
 
 mysql:
-  host: "43.203.219.134"
+  host: "52.78.50.11"
   port: "3306"
   database: "ReservationDB"
   user: "root"
@@ -33,7 +33,7 @@ cors:
   allow: "http://localhost:3000,http://localhost:8080"
 
 kafka:
-  server: "43.203.219.134:9093"
+  server: "52.78.50.11:9093"
   consumer_group: "inventory-group"
   topic: "inventory-events"
 
