@@ -7,11 +7,11 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: msa-user
+      app: user-service
   template:
     metadata:
       labels:
-        app: msa-user
+        app: user-service
     spec:
       containers:
         - name: msa-user
@@ -85,3 +85,8 @@ spec:
                 configMapKeyRef:
                   name: user-config
                   key: SERVER_PORT
+            - name: ALLOWED_ORIGINS
+              valueFrom:
+                configMapKeyRef:
+                  name: user-config
+                  key: ALLOWED_ORIGINS

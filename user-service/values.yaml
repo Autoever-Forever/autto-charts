@@ -13,8 +13,8 @@ ingress:
   tls: []
 
 image:
-  repository: auttto/autto-user-service-amd64
-  tag: "1.2"
+  repository: auttto/user-service
+  tag: "1.0.0"
   pullPolicy: Always
   
 
@@ -24,7 +24,7 @@ service:
   targetPort: 8081
 
 mysql:
-  host: "43.203.219.134"
+  host: "43.201.31.157"
   port: "3306"
   database: "UserDB"
   user: "root"
@@ -37,7 +37,7 @@ mail:
   password: "w6978979"
 
 redis:
-  host: "43.203.219.134"
+  host: "43.201.31.157"
   port: "6379"
 
 jwt:
@@ -45,7 +45,10 @@ jwt:
 
 server:
   port: "8081"
-  
+
+cors:
+  origins: "http://auttoever.com"
+
 autoscaling:
   enabled: true  # HPA 활성화 여부
   minReplicas: 1  # 최소 Pod 수
