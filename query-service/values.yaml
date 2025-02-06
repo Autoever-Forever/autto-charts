@@ -10,8 +10,6 @@ ingress:
       paths:
         - path: /products
           pathType: Prefix
-        - path: /mypage
-          pathType: Prefix
   tls: []
 
 image:
