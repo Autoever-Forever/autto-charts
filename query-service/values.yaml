@@ -1,6 +1,5 @@
 replicaCount: 1
 namespace: helm-backend
-
 ingress:
   enabled: true
   className: nginx
@@ -11,37 +10,29 @@ ingress:
         - path: /products
           pathType: Prefix
   tls: []
-
 image:
   repository: auttto/query-service
-  tag: "1.0.0"
+  tag: "1.0.1.107"
   pullPolicy: IfNotPresent
-
 service:
   type: ClusterIP
   port: 8082
   targetPort: 8082
-
 mysql:
   host: "52.78.50.11"
   port: "3306"
   database: "AuttoDB"
   user: "root"
   password: "1234"
-
 cors:
   allow: "http://localhost:3000,http://localhost:8080"
-
 jwt:
   secret: "64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff"
-
 custom:
   url:
     reservation: "http://auttoever.com/api/v1/reservation"
-
 server:
   port: "8082"
-
 autoscaling:
   enabled: true
   minReplicas: 1
