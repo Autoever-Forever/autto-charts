@@ -3,10 +3,10 @@ name: user-service
 version: 0.1.0
 description: A Helm chart for user-service of autto's server
 type: application
-sources: 
+sources:
   - https://github.com/Autoever-Forever/autto-charts.git
   - https://hub.docker.com/r/auttto/userservice
 maintainer:
   - name: Team autto
   - email: hyundai.autto@gmail.com
-appVersion: "202501221133"
+appVersion: "latest"
