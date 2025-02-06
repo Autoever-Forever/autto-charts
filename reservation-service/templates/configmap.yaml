@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reservation-config
+  namespace: {{ .Values.namespace }}
+data:
+  MYSQL_HOST: {{ .Values.mysql.host | quote }}
+  MYSQL_PORT: {{ .Values.mysql.port | quote }}
+  MYSQL_DATABASE: {{ .Values.mysql.database | quote }}
+  MYSQL_USER: {{ .Values.mysql.user | quote }}
+  MYSQL_PASSWORD: {{ .Values.mysql.password | quote }}
+
+  ALLOWED_ORIGINS: {{ .Values.cors.allow | quote }}
+
+  KAFKA_SERVERS: {{ .Values.kafka.server | quote }}
+  KAFKA_CONSUMER_GROUP: {{ .Values.kafka.consumer_group | quote }}
+  KAFKA_TOPIC: {{ .Values.kafka.topic | quote }}
+
+  SPRING_PROFILES_ACTIVE: {{ .Values.spring.profile | quote }}
+  RESERVATION_SERVICE_URL: {{ .Values.reservation.url | quote }}
+
+  JWT_SECRET: {{ .Values.jwt.secret | quote }}
+  SERVER_PORT: {{ .Values.server.port | quote }}
