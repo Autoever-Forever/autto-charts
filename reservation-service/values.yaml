@@ -1,6 +1,5 @@
 replicaCount: 1
 namespace: helm-backend
-
 ingress:
   enabled: true
   className: nginx
@@ -11,44 +10,34 @@ ingress:
         - path: /api/v1/reservation
           pathType: Prefix
   tls: []
-
 image:
   repository: auttto/reservation-service
-  tag: "1.0.0"
+  tag: "1.0.1.106"
   pullPolicy: IfNotPresent
-
 service:
   type: ClusterIP
   port: 8083
   targetPort: 8083
-
 mysql:
   host: "52.78.50.11"
   port: "3306"
   database: "ReservationDB"
   user: "root"
   password: "1234"
-
 cors:
   allow: "http://localhost:3000,http://localhost:8080"
-
 kafka:
   server: "52.78.50.11:9093"
   consumer_group: "inventory-group"
   topic: "inventory-events"
-
 spring:
   profile: "prod"
-
 reservation:
   url: "http://auttoever.com"
-
 jwt:
   secret: "64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff"
-
 server:
   port: "8083"
-
 autoscaling:
   enabled: true
   minReplicas: 1
