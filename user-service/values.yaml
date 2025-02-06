@@ -2,7 +2,7 @@ replicaCount: 3
 image:
   repository: nginx
   pullPolicy: Always
-  tag: 0.0.3.98
+  tag: 0.0.3.100
 # 추후 프로메테우스 연결 시 작성
 #podAnnotations:
 #  prometheus.io/scrape: "true"
