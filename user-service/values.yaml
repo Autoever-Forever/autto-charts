@@ -12,7 +12,7 @@ ingress:
   tls: []
 image:
   repository: auttto/user-service
-  tag: "0.0.3.105"
+  tag: "0.0.3.112"
   pullPolicy: Always
 service:
   type: ClusterIP

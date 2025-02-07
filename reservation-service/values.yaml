@@ -13,7 +13,7 @@ ingress:
 image:
   repository: auttto/reservation-service
 
-  tag: "1.0.1.110"
+  tag: "1.0.1.113"
   pullPolicy: Always
 service:
   type: ClusterIP
