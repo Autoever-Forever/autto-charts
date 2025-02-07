@@ -1,56 +1,46 @@
 replicaCount: 1
 namespace: helm-backend
-
 ingress:
   enabled: true
-  className: nginx  # nginx-ingress-controller 사용
+  className: nginx # nginx-ingress-controller 사용
   annotations: {}
   hosts:
-    - host: auttoever.com  # 실제 도메인으로 변경
+    - host: auttoever.com # 실제 도메인으로 변경
       paths:
         - path: /auth
           pathType: Prefix
   tls: []
-
 image:
   repository: auttto/user-service
-  tag: "1.0.0"
+  tag: "0.0.3.105"
   pullPolicy: Always
-  
-
 service:
   type: ClusterIP
   port: 8081
   targetPort: 8081
-
 mysql:
   host: "43.201.31.157"
   port: "3306"
   database: "UserDB"
   user: "root"
   password: "1234"
-
 mail:
   host: "smtp.naver.com"
   port: "465"
   username: "et0709@naver.com"
   password: "w6978979"
-
 redis:
   host: "43.201.31.157"
   port: "6379"
-
 jwt:
   secret: "64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff"
-
 server:
   port: "8081"
-
 cors:
   origins: "http://auttoever.com"
 
 autoscaling:
-  enabled: true  # HPA 활성화 여부
-  minReplicas: 1  # 최소 Pod 수
-  maxReplicas: 5  # 최대 Pod 수
+  enabled: true # HPA 활성화 여부
+  minReplicas: 1 # 최소 Pod 수
+  maxReplicas: 5 # 최대 Pod 수
   targetCPUUtilizationPercentage: 80
