@@ -10,7 +10,6 @@ data:
   MYSQL_USERNAME: {{ .Values.mysql.username | quote }}
   MYSQL_PASSWORD: {{ .Values.mysql.password | quote }}
   KAFKA_SERVERS: {{ .Values.kafka.servers | quote }}
-  KAFKA_GROUP_ID: {{ .Values.kafka.consumer_group | quote }}
   JWT_SECRET: {{ .Values.jwt.secret | quote }}
   MINIO_ENDPOINT: {{ .Values.minio.endpoint | quote }}
   MINIO_ACCESS_KEY: {{ .Values.minio.accessKey | quote }}

@@ -11,7 +11,7 @@ ingress:
           pathType: Prefix
   tls: []
 image:
-  repository: auttto/autto-user-service-amd64
+  repository: auttto/user-service
   tag: "0.0.3.112"
   pullPolicy: Always
 service:
@@ -19,7 +19,7 @@ service:
   port: 8081
   targetPort: 8081
 mysql:
-  host: "43.203.219.134"
+  host: "43.201.31.157"
   port: "3306"
   database: "UserDB"
   user: "root"
@@ -30,12 +30,15 @@ mail:
   username: "et0709@naver.com"
   password: "w6978979"
 redis:
-  host: "43.203.219.134"
+  host: "43.201.31.157"
   port: "6379"
 jwt:
   secret: "64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff"
 server:
   port: "8081"
+cors:
+  origins: "http://auttoever.com"
+
 autoscaling:
   enabled: true # HPA 활성화 여부
   minReplicas: 1 # 최소 Pod 수

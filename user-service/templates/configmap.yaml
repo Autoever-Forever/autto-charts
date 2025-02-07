@@ -20,3 +20,5 @@ data:
   
   JWT_SECRET: {{ .Values.jwt.secret | quote }}
   SERVER_PORT: {{ .Values.server.port | quote }}
+  
+  ALLOWED_ORIGINS: {{ .Values.cors.origins | quote }}

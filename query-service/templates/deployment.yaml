@@ -8,11 +8,11 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: msa-query
+      app: query-service
   template:
     metadata:
       labels:
-        app: msa-query
+        app: query-service
     spec:
       containers:
         - name: msa-query
@@ -66,3 +66,8 @@ spec:
                 configMapKeyRef:
                   name: query-config
                   key: SERVER_PORT
+            - name: ALLOWED_ORIGINS
+              valueFrom:
+                configMapKeyRef:
+                  name: user-config
+                  key: ALLOWED_ORIGINS

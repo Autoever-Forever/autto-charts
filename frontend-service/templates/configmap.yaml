@@ -1,0 +1,98 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: {{ .Values.namespace }}
+data:
+  nginx.conf: |
+    server {
+        listen 3000;
+        server_name localhost;
+        
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html index.htm;
+            try_files $uri $uri/ /index.html;
+            
+            
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+            add_header 'Access-Control-Allow-Credentials' 'true';
+        }
+        # user-service
+        location /auth/ {
+            proxy_pass http://user-service:8081/auth;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            
+            
+            # CORS preflight 요청 처리
+            if ($request_method = 'OPTIONS') {
+                add_header 'Access-Control-Allow-Origin' 'http://auttoever.com';
+                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+                add_header 'Access-Control-Max-Age' 1728000;
+                add_header 'Content-Type' 'text/plain charset=UTF-8';
+                add_header 'Content-Length' 0;
+                return 204;
+            }
+            
+            # 실제 요청에 대한 CORS 헤더
+            add_header 'Access-Control-Allow-Origin' 'http://auttoever.com';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+        }
+        # query-service
+        location /products/ {
+            proxy_pass http://query-service:8082/products;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            
+            
+            # CORS preflight 요청 처리
+            if ($request_method = 'OPTIONS') {
+                add_header 'Access-Control-Allow-Origin' 'http://auttoever.com';
+                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+                add_header 'Access-Control-Max-Age' 1728000;
+                add_header 'Content-Type' 'text/plain charset=UTF-8';
+                add_header 'Content-Length' 0;
+                return 204;
+            }
+            
+            # 실제 요청에 대한 CORS 헤더
+            add_header 'Access-Control-Allow-Origin' 'http://auttoever.com';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+        }
+        # reservation-service 
+        location /api/ {
+            proxy_pass http://reservation-service:8083/api;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            
+            
+            # CORS preflight 요청 처리
+            if ($request_method = 'OPTIONS') {
+                add_header 'Access-Control-Allow-Origin' 'http://auttoever.com';
+                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+                add_header 'Access-Control-Max-Age' 1728000;
+                add_header 'Content-Type' 'text/plain charset=UTF-8';
+                add_header 'Content-Length' 0;
+                return 204;
+            }
+            
+            # 실제 요청에 대한 CORS 헤더
+            add_header 'Access-Control-Allow-Origin' 'http://auttoever.com';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+        }
+        
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+    }
+
