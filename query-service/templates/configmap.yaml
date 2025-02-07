@@ -15,3 +15,5 @@ data:
   JWT_SECRET: {{ .Values.jwt.secret | quote }}
   RESERVATION_URL: {{ .Values.custom.url.reservation | quote }}
   SERVER_PORT: {{ .Values.server.port | quote }}
+  
+  ALLOWED_ORIGINS: {{ .Values.cors.origins | quote }}
