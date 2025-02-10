@@ -1,5 +1,5 @@
 replicaCount: 2
-namespace: helm-backend
+namespace: autto-service
 configMap:
   name: frontend-config
 ingress:
@@ -9,7 +9,7 @@ ingress:
   hosts:
     - host: auttoever.com
       paths:
-        - path: /products
+        - path: /
           pathType: Prefix
 image:
   repository: auttto/frontend

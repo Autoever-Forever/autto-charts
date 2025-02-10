@@ -10,8 +10,6 @@ data:
   MYSQL_USER: {{ .Values.mysql.user | quote }}
   MYSQL_PASSWORD: {{ .Values.mysql.password | quote }}
 
-  ALLOWED_ORIGINS: {{ .Values.cors.allow | quote }}
-
   KAFKA_SERVERS: {{ .Values.kafka.server | quote }}
   KAFKA_CONSUMER_GROUP: {{ .Values.kafka.consumer_group | quote }}
   KAFKA_TOPIC: {{ .Values.kafka.topic | quote }}
