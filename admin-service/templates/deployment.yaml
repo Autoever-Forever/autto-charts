@@ -50,11 +50,6 @@ spec:
                 configMapKeyRef:
                   name: {{ .Release.Name }}-config
                   key: KAFKA_SERVERS
-            - name: KAFKA_GROUP_ID
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Release.Name }}-config
-                  key: KAFKA_SERVERS
             - name: JWT_SECRET
               valueFrom:
                 configMapKeyRef:

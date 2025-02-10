@@ -1,50 +1,41 @@
 replicaCount: 1
 namespace: helm-backend
-
 ingress:
   enabled: true
-  className: nginx  # nginx-ingress-controller 사용
+  className: nginx # nginx-ingress-controller 사용
   annotations: {}
   hosts:
-    - host: auttoever.com  # 실제 도메인으로 변경
+    - host: auttoever.com # 실제 도메인으로 변경
       paths:
         - path: /admin
           pathType: Prefix
   tls: []
-  
 image:
   repository: auttto/admin-service
-  tag: "1.0.0"
+  tag: "1.0.1.115"
   pullPolicy: Always
-
 service:
   type: ClusterIP
   port: 8084
   targetPort: 8084
-
 mysql:
-  host: "52.78.50.11"
+  host: "43.201.31.157"
   port: "3306"
   database: "ProductDB"
   username: "root"
   password: "1234"
-
 kafka:
-  servers: "52.78.50.11:9093"
+  servers: "43.201.31.157:19092, 43.201.31.157:29092"
   consumer_group: "inventory-group"
-
 jwt:
   secret: "64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff"
-
 minio:
-  endpoint: "http://52.78.50.11:9000"
-  accessKey: "MRFKATNgLxBAHpImbrUU"
-  secretKey: "J3o4HWfgpDY4QBGSjsCGn1B5Hh09kD7GUCDhb8NW"
+  endpoint: "http://43.201.31.157:9000"
+  accessKey: "E9SGkOFznld2tjtykT13"
+  secretKey: "x2BpH0xu0fbeRdRYl7Crgzc7OK9xVnKnOcFI8Y2t"
   bucket: "dev-test"
-
 server:
   port: "8084"
-
 resources:
   limits:
     cpu: "1"
@@ -52,9 +43,8 @@ resources:
   requests:
     cpu: "500m"
     memory: "512Mi"
-
 autoscaling:
   enabled: true
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 1
   targetCPUUtilizationPercentage: 80
