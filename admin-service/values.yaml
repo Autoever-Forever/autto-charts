@@ -1,5 +1,5 @@
 replicaCount: 1
-namespace: helm-backend
+namespace: autto-service
 ingress:
   enabled: true
   className: nginx # nginx-ingress-controller 사용
@@ -11,29 +11,31 @@ ingress:
           pathType: Prefix
   tls: []
 image:
-  repository: auttto/admin-service
-  tag: "1.0.1.115"
+  repository: autto.harbor.com/auttto/admin-service
+  tag: "1.0.2.118"
   pullPolicy: Always
 service:
   type: ClusterIP
   port: 8084
   targetPort: 8084
 mysql:
-  host: "43.201.31.157"
+  host: "192.168.10.7"
   port: "3306"
   database: "ProductDB"
   username: "root"
   password: "1234"
 kafka:
-  servers: "43.201.31.157:19092, 43.201.31.157:29092"
+  servers: "192.168.10.11:9092, 192.168.10.12:9092"
   consumer_group: "inventory-group"
 jwt:
   secret: "64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff"
 minio:
-  endpoint: "http://43.201.31.157:9000"
+  endpoint: "http://192.168.10.8:9000"
   accessKey: "E9SGkOFznld2tjtykT13"
   secretKey: "x2BpH0xu0fbeRdRYl7Crgzc7OK9xVnKnOcFI8Y2t"
   bucket: "dev-test"
+cors:
+  origins: "http://auttoever.com"
 server:
   port: "8084"
 resources:
@@ -43,6 +45,7 @@ resources:
   requests:
     cpu: "500m"
     memory: "512Mi"
+
 autoscaling:
   enabled: true
   minReplicas: 1

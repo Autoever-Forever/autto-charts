@@ -9,10 +9,14 @@ data:
   MYSQL_DATABASE: {{ .Values.mysql.database | quote }}
   MYSQL_USERNAME: {{ .Values.mysql.username | quote }}
   MYSQL_PASSWORD: {{ .Values.mysql.password | quote }}
+
   KAFKA_SERVERS: {{ .Values.kafka.servers | quote }}
   JWT_SECRET: {{ .Values.jwt.secret | quote }}
+
   MINIO_ENDPOINT: {{ .Values.minio.endpoint | quote }}
   MINIO_ACCESS_KEY: {{ .Values.minio.accessKey | quote }}
   MINIO_SECRET_KEY: {{ .Values.minio.secretKey | quote }}
   MINIO_BUCKET: {{ .Values.minio.bucket | quote }}
+
   SERVER_PORT: {{ .Values.server.port | quote }}
+  ALLOWED_ORIGINS: {{ .Values.cors.origins | quote }}
