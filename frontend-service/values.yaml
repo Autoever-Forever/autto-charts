@@ -7,12 +7,12 @@ ingress:
   className: "nginx"
   annotations: {}
   hosts:
-    - host: autto.harbor.com/auttoever.com
+    - host: auttoever.com
       paths:
         - path: /
           pathType: Prefix
 image:
-  repository: auttto/frontend
+  repository: autto.harbor.com/auttto/frontend
   pullPolicy: Always
   tag: "1.0.1.117"
 nameOverride: ""
