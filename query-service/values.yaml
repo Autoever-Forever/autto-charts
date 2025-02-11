@@ -12,7 +12,7 @@ ingress:
   tls: []
 image:
   repository: autto.harbor.com/auttto/query-service
-  tag: "1.0.1.114"
+  tag: "1.0.2.119"
   pullPolicy: Always
 service:
   type: ClusterIP
@@ -24,7 +24,6 @@ mysql:
   database: "ProductDB"
   user: "root"
   password: "1234"
-
 jwt:
   secret: "64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff"
 custom:
@@ -32,10 +31,8 @@ custom:
     reservation: "http://auttoever.com/api/v1/reservation"
 server:
   port: "8082"
-  
 cors:
   origins: "http://auttoever.com"
-  
 autoscaling:
   enabled: true
   minReplicas: 1
