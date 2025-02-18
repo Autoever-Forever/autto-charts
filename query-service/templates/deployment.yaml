@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: query-deployment
-  namespace: {{ .Values.namespace }}
+  name: {{ .Release.Name }}-deployment
+  namespace: {{ .Release.Namespace }}
 
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: query-service
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: query-service
+        app: {{ .Release.Name }}
     spec:
       containers:
         - name: msa-query
@@ -66,8 +66,3 @@ spec:
                 configMapKeyRef:
                   name: query-config
                   key: SERVER_PORT
-            - name: ALLOWED_ORIGINS
-              valueFrom:
-                configMapKeyRef:
-                  name: user-config
-                  key: ALLOWED_ORIGINS

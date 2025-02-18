@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reservation-deployment
-  namespace: {{ .Values.namespace }}
+  name: {{ .Release.Name }}-deployment
+  namespace: {{ .Release.Namespace }}
 
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: msa-reservation
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: msa-reservation
+        app: {{ .Release.Name }}
     spec:
       containers:
         - name: msa-reservation

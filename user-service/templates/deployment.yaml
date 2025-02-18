@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-deployment
-  namespace: {{ .Values.namespace }}
+  name: {{ .Release.Name }}-deployment
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: user-service
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: user-service
+        app: {{ .Release.Name }}
     spec:
       containers:
         - name: msa-user
