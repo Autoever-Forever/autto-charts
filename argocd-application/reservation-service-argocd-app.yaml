@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reservation
+  namespace: argocd # argo cd application 리소스를 저장할 네임스페이스
+spec:
+  project: default
+  # helm chart repo
+  source:
+    repoURL: 'http://192.168.10.14/autto/charts.git'
+    targetRevision: 'main' # main 버전의 차트 추적
+    path: reservation-service
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    namespace: autto-service # 실제 서비스가 배포될 네임스페이스
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true # 불필요한 리소스 삭제
+      selfHeal: true  # 클러스터에서 수정한 변경 사항을 git에 정의된 상태로 자동 복원
+    syncOptions:
+      - CreateNamespace=true #  namespace가 없으면 자동으로 생성
