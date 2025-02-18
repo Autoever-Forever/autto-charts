@@ -14,7 +14,7 @@ ingress:
 image:
   repository: autto.harbor.com/auttto/frontend
   pullPolicy: Always
-  tag: "1.0.3.123"
+  tag: "1.0.3.132"
 nameOverride: ""
 fullnameOverride: ""
 serviceAccount:
