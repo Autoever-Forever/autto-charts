@@ -12,7 +12,7 @@ ingress:
   tls: []
 image:
   repository: autto.harbor.com/auttto/user-service
-  tag: "0.0.3.112"
+  tag: "0.0.3.124"
   pullPolicy: Always
 service:
   type: ClusterIP
@@ -38,7 +38,6 @@ server:
   port: "8081"
 cors:
   origins: "http://auttoever.com"
-
 autoscaling:
   enabled: true # HPA 활성화 여부
   minReplicas: 1 # 최소 Pod 수
