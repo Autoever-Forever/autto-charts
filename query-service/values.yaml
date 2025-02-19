@@ -5,7 +5,7 @@ ingress:
   className: nginx
   annotations: {}
   hosts:
-    - host: auttoever.com
+    - host: autto.ever.com
       paths:
         - path: /products
           pathType: Prefix
