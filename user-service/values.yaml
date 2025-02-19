@@ -1,15 +1,15 @@
 replicaCount: 1
 namespace: autto-service
-# ingress:
-#   enabled: true
-#   className: nginx # nginx-ingress-controller 사용
-#   annotations: {}
-#   hosts:
-#     - host: autto.ever.com # 실제 도메인으로 변경
-#       paths:
-#         - path: /auth
-#           pathType: Prefix
-#   tls: []
+ingress:
+  enabled: true
+  className: nginx # nginx-ingress-controller 사용
+  annotations: {}
+  hosts:
+    - host: autto.ever.com # 실제 도메인으로 변경
+      paths:
+        - path: /auth
+          pathType: Prefix
+  tls: []
 image:
   repository: autto.harbor.com/auttto/user-service
   tag: "0.0.3.128"
