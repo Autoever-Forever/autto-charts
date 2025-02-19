@@ -35,7 +35,7 @@ minio:
   secretKey: "x2BpH0xu0fbeRdRYl7Crgzc7OK9xVnKnOcFI8Y2t"
   bucket: "dev-test"
 cors:
-  origins: "http://autto.ever.com"
+  origins: "http://autto.ever.com,http://112.218.95.58:13005"
 server:
   port: "8084"
 resources:
