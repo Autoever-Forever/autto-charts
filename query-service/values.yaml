@@ -32,7 +32,7 @@ custom:
 server:
   port: "8082"
 cors:
-  origins: "http://112.218.95.58:13005"
+  origins: "http://autto.ever.com"
 autoscaling:
   enabled: true
   minReplicas: 1
