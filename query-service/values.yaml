@@ -28,11 +28,11 @@ jwt:
   secret: "64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff"
 custom:
   url:
-    reservation: "http://auttoever.com/api/v1/reservation"
+    reservation: "http://autto.ever.com/api/v1/reservation"
 server:
   port: "8082"
 cors:
-  origins: "http://autto.ever.com"
+  origins: "http://autto.ever.com,http://112.218.95.58:13005"
 autoscaling:
   enabled: true
   minReplicas: 1
