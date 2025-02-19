@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   selector:
-    app: msa-reservation
+    app: reservation-service
   ports:
     - protocol: TCP
       port: {{ .Values.service.port }}
