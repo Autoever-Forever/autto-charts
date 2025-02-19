@@ -5,7 +5,7 @@ ingress:
   className: nginx
   annotations: {}
   hosts:
-    - host: auttoever.com
+    - host: autto.ever.com
       paths:
         - path: /api
           pathType: Prefix
@@ -37,7 +37,7 @@ jwt:
 server:
   port: "8083"
 cors:
-  origins: "http://auttoever.com"
+  origins: "http://autto.ever.com"
 autoscaling:
   enabled: true
   minReplicas: 1
