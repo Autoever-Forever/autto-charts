@@ -2,15 +2,15 @@ replicaCount: 2
 namespace: autto-service
 configMap:
   name: frontend-config
-ingress:
-  enabled: true
-  className: "nginx"
-  annotations: {}
-  hosts:
-    - host: autto.ever.com
-      paths:
-        - path: /
-          pathType: Prefix
+# ingress:
+#   enabled: true
+#   className: "nginx"
+#   annotations: {}
+#   hosts:
+#     - host: autto.ever.com
+#       paths:
+#         - path: /
+#           pathType: Prefix
 image:
   repository: autto.harbor.com/auttto/frontend
   pullPolicy: Always
