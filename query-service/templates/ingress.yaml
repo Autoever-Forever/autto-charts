@@ -12,7 +12,8 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
-    {{- end }}
+  {{- end }}
+
 spec:
   ingressClassName: {{ .Values.ingress.className }}
   rules:
