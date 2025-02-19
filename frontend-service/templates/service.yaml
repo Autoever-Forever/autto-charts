@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   selector:
-    app: msa-frontend
+    app: frontend-service
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
