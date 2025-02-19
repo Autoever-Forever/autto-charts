@@ -37,7 +37,7 @@ jwt:
 server:
   port: "8081"
 cors:
-  origins: "http://autto.ever.com"
+  origins: "http://112.218.95.58:13005"
 autoscaling:
   enabled: true # HPA 활성화 여부
   minReplicas: 1 # 최소 Pod 수
