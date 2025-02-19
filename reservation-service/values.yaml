@@ -12,7 +12,7 @@ ingress:
   tls: []
 image:
   repository: autto.harbor.com/auttto/reservation-service
-  tag: "1.0.1.137"
+  tag: "1.0.1.113"
   pullPolicy: Always
 service:
   type: ClusterIP
