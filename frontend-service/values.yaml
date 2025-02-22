@@ -14,7 +14,7 @@ configMap:
 image:
   repository: autto.harbor.com/auttto/frontend
   pullPolicy: Always
-  tag: "1.0.3.146"
+  tag: "1.0.3.148"
 nameOverride: ""
 fullnameOverride: ""
 serviceAccount:
